@@ -1,4 +1,6 @@
 //Business Logic for AddressBook -----------
+var addressBook = new AddressBook();
+
 function AddressBook() {
   this.contacts = []
 }
@@ -21,8 +23,11 @@ Contact.prototype.fullName = function() {
 }
  var contact1 = new Contact("Chuck", "Norris", "1-800-KICK-ASS");
 
- var inputContact = function(newContact) {
-   $("ul").append("<li>NAME: "  + newContact.fullName() + ", PHONE: " + newContact.phoneNumber + "</li>")
+ var inputContact = function(addressBook) {
+   debugger;
+   for (var index=0; index <= addressBook.contacts.length; index++) {
+     $("ul").append("<li>NAME: "  + addressBook.contacts[index].fullName() + ", PHONE: " + addressBook.contacts[index].phoneNumber + "</li>")
+  }
    console.log(newContact);
  }
 
@@ -38,7 +43,7 @@ $(document).ready(function() {
   var phoneNumberInput = $("input#phoneNumber").val();
   console.log(phoneNumberInput);
 
-  var addressBook = new AddressBook();
+  // var addressBook = new AddressBook();
   console.log("address book", addressBook);
 
   var newContact = new Contact(firstNameInput, lastNameInput, phoneNumberInput);
@@ -47,7 +52,10 @@ $(document).ready(function() {
   console.log(newContact);
   console.log("address book", addressBook);
 
-  inputContact(newContact);
+  //$("ul").empty();
+
+  inputContact(addressBook);
+
 
 
 
