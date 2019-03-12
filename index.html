@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/scripts.js"></script>
+
+    <title>Address Book</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h2>Address Book</h2>
+        <p>These are our friends!</p>
+        <div id="contactsInput">
+          <form>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input id="firstName" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number (1-XXX-XXX-XXXX)</label>
+              <input id="phoneNumber" class="form-control" type="text">
+            </div>
+            <button type="submit" class="btn btn-info" name="button">Add me!</button>
+
+          </form>
+        </div>
+        <div id="personList">
+          <ul class="unstyled">
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+
+  </body>
+</html>
