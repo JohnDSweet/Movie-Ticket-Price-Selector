@@ -25,6 +25,9 @@ function Address(street, city, state) {
   this.state = state;
 }
 
+Address.prototype.fullAddress = function() {
+  return this.street + ", " + this.city + " " + this.state;
+}
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
@@ -37,10 +40,8 @@ Contact.prototype.fullName = function() {
      debugger;
      $("ul#personEntry").append("<li>NAME: "  + addressBook.contacts[index].fullName() + "</li>"); $("ul#personEntry").append("<li>PHONE: " + addressBook.contacts[index].phoneNumber + "</li>");
      addressBook.contacts[index].addresses.forEach(function(address) {
-       $("ul#personEntry").append("<li>ADDRESS: </li>");
-       $("ul#personEntry").append("<li>" + address.street + "</li>");
-       $("ul#personEntry").append("<li>" + address.city + "</li>");
-       $("ul#personEntry").append("<li>" + address.state + "</li>");
+       $("ul#personEntry").append("<li>ADDRESS:" + address.fullAddress() + "</li>");
+       
 
      });
    };
