@@ -19,10 +19,21 @@ function Contact(firstName, lastName, phoneNumber) {
 }
 
 //Business Logic for Addresses -------------
-function Address(street, city, state) {
+function Address(type, street, city, state) {
+  this.type = type;
   this.street = street;
   this.city = city;
   this.state = state;
+}
+
+function resetFields() {
+    $("input#firstName").val("");
+    $("input#lastName").val("");
+    $("input#phoneNumber").val("");
+    $("input.address-type").val("");
+    $("input.new-street").val("");
+    $("input.new-city").val("");
+    $("input.new-state").val("");
 }
 
 Address.prototype.fullAddress = function() {
@@ -37,11 +48,11 @@ Contact.prototype.fullName = function() {
  var inputContact = function(addressBook) {
    $("ul#personEntry").text("");
    for (var index=0; index < addressBook.contacts.length; index++) {
-     debugger;
+     // debugger;
      $("ul#personEntry").append("<li>NAME: "  + addressBook.contacts[index].fullName() + "</li>"); $("ul#personEntry").append("<li>PHONE: " + addressBook.contacts[index].phoneNumber + "</li>");
      addressBook.contacts[index].addresses.forEach(function(address) {
-       $("ul#personEntry").append("<li>ADDRESS:" + address.fullAddress() + "</li>");
-       
+       $("ul#personEntry").append("<li>" + address.type + ": " + address.fullAddress() + "</li>");
+
 
      });
    };
@@ -56,15 +67,18 @@ $(document).ready(function() {
   var lastNameInput = $("input#lastName").val();
   var phoneNumberInput = $("input#phoneNumber").val();
   var newContact = new Contact(firstNameInput, lastNameInput, phoneNumberInput);
-
+// debugger;
   $(".new-address").each(function() {
+    debugger;
+    var addressType = $(this).find("select.address-type").val();
     var inputtedStreet = $(this).find("input.new-street").val();
     var inputtedCity = $(this).find("input.new-city").val();
     var inputtedState = $(this).find("input.new-state").val();
-    var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+    var newAddress = new Address(addressType, inputtedStreet, inputtedCity, inputtedState);
     newContact.addresses.push(newAddress);
   });
 
+  resetFields();
 
   addressBook.addContact(newContact);
   inputContact(addressBook);
@@ -75,6 +89,13 @@ $(document).ready(function() {
 
   $("#add-address").click(function() {
     $("#new-addresses").append('<br>' +
+    '<div class="form-group">' +
+      '<label for="address-type">Type</label>' +
+      '<select class="form-control address-type">' +
+        '<option value="Home">Home</option>' +
+        '<option value="Work">Work</option>' +
+      '</select>' +
+    '</div>' +
     '<div class="new-address">' +
       '<div class="form-group">' +
         '<label for="new-street">Street</label>' +
