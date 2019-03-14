@@ -32,9 +32,17 @@ Contact.prototype.fullName = function() {
  var contact1 = new Contact("Chuck", "Norris", "1-800-KICK-ASS");
 
  var inputContact = function(addressBook) {
-   // debugger;
+   $("ul#personEntry").text("");
    for (var index=0; index < addressBook.contacts.length; index++) {
-     $("ul").append("<li>NAME: "  + addressBook.contacts[index].fullName() + ", PHONE: " + addressBook.contacts[index].phoneNumber + "</li>")
+     debugger;
+     $("ul#personEntry").append("<li>NAME: "  + addressBook.contacts[index].fullName() + "</li>"); $("ul#personEntry").append("<li>PHONE: " + addressBook.contacts[index].phoneNumber + "</li>");
+     addressBook.contacts[index].addresses.forEach(function(address) {
+       $("ul#personEntry").append("<li>ADDRESS: </li>");
+       $("ul#personEntry").append("<li>" + address.street + "</li>");
+       $("ul#personEntry").append("<li>" + address.city + "</li>");
+       $("ul#personEntry").append("<li>" + address.state + "</li>");
+
+     });
    };
  };
 
@@ -44,28 +52,41 @@ $(document).ready(function() {
   $("#contactsInput form").submit(function(event) {
 
   var firstNameInput = $("input#firstName").val();
-  console.log(firstNameInput)
   var lastNameInput = $("input#lastName").val();
-  console.log(lastNameInput);
   var phoneNumberInput = $("input#phoneNumber").val();
-  console.log(phoneNumberInput);
-
-  // var addressBook = new AddressBook();
-  console.log("address book", addressBook);
-
   var newContact = new Contact(firstNameInput, lastNameInput, phoneNumberInput);
 
+  $(".new-address").each(function() {
+    var inputtedStreet = $(this).find("input.new-street").val();
+    var inputtedCity = $(this).find("input.new-city").val();
+    var inputtedState = $(this).find("input.new-state").val();
+    var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+    newContact.addresses.push(newAddress);
+  });
+
+
   addressBook.addContact(newContact);
-  console.log(newContact);
-  console.log("address book", addressBook);
-
-  //$("ul").empty();
-
   inputContact(addressBook);
 
 
+  event.preventDefault();
+  });
 
-
-event.preventDefault();
+  $("#add-address").click(function() {
+    $("#new-addresses").append('<br>' +
+    '<div class="new-address">' +
+      '<div class="form-group">' +
+        '<label for="new-street">Street</label>' +
+        '<input class="form-control new-street" type="text">' +
+      '</div>' +
+      '<div class="form-group">' +
+        '<label for="new-city">City</label>' +
+        '<input class="form-control new-city" type="text">' +
+      '</div>' +
+      '<div class="form-group">' +
+        '<label for="new-state">State</label>' +
+        '<input class="form-control new-state" type="text">' +
+      '</div>' +
+    '</div>');
   });
 });

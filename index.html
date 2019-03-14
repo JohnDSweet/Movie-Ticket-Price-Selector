@@ -13,32 +13,57 @@
       <div class="jumbotron">
         <h2>Address Book</h2>
         <p>These are our friends!</p>
-        <div id="contactsInput">
-          <form>
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input id="firstName" class="form-control" type="text">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="contactsInput">
+              <form>
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input id="firstName" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="phoneNumber">Phone Number (1-XXX-XXX-XXXX)</label>
+                  <input id="phoneNumber" class="form-control" type="text">
+                </div>
+                <div id="new-addresses">
+                  <div class="new-address">
+                    <div class="form-group">
+                      <label for="new-street">Street</label>
+                      <input class="form-control new-street" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="new-city">City</label>
+                      <input class="form-control new-city" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="new-state">State</label>
+                      <input class="form-control new-state" type="text">
+                    </div>
+                  </div>
+                </div>
+                <span class="btn btn-primary" id="add-address">Another address</span>
+                <button type="submit" class="btn btn-info" name="button">Add me!</button>
+              </form>
             </div>
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input id="lastName" class="form-control" type="text">
+          </div>
+          <div class="col-md-6">
+            <div id="personList">
+              <h2></h2>
+              <ul id="personEntry">
+              </ul>
+              <!-- <p>First Name: <span class="firstName"></span></p>
+              <p>Last Name: <span class="lastName"></span></p> -->
+              <!-- <p>Addresses: </p>
+              <ul id="addresses"> -->
+              <!-- </ul> -->
             </div>
-            <div class="form-group">
-              <label for="phoneNumber">Phone Number (1-XXX-XXX-XXXX)</label>
-              <input id="phoneNumber" class="form-control" type="text">
-            </div>
-            <button type="submit" class="btn btn-info" name="button">Add me!</button>
-
-          </form>
+          </div>
         </div>
-        <div id="personList">
-          <ul class="unstyled">
-          </ul>
-        </div>
-
-
       </div>
     </div>
-
   </body>
 </html>
