@@ -32,12 +32,11 @@ Contact.prototype.fullName = function() {
  var contact1 = new Contact("Chuck", "Norris", "1-800-KICK-ASS");
 
  var inputContact = function(addressBook) {
-   debugger;
-   for (var index=0; index <= addressBook.contacts.length; index++) {
+   // debugger;
+   for (var index=0; index < addressBook.contacts.length; index++) {
      $("ul").append("<li>NAME: "  + addressBook.contacts[index].fullName() + ", PHONE: " + addressBook.contacts[index].phoneNumber + "</li>")
-  }
-   console.log(newContact);
- }
+   };
+ };
 
 
 //User Interface Logic -----------
